@@ -1,0 +1,100 @@
+
+
+create original array with name, image
+
+create a tempGame array with the name, image, userAnswer
+
+var timesUp = true;
+var index = 0;
+
+start button
+    displayQuestion();
+    
+submit button
+    - stops timeout()
+    - checkAnswer()
+    - timesUp = false;
+
+
+
+checkAnswer() 
+
+     - push image, name to the tempGame array using index
+     - push the userAnswer to tempGame
+
+    if (timesUp) {
+        // if timesUp is true then the time ran out and they missed the question
+
+        display the correct name;
+        push "incorrect" to the tempGame.userAnswer at index 
+
+    } else {
+        push the userAnswer to the tempGame.userAnswer at index
+        if ( tempGame.userAnswer === tempGame.name) {
+            display, you are correct!
+        } else {
+            display, sorry, the correct answer is 
+            display tempGame.name in the dom
+        }
+    }
+
+    index++;
+    timesUp = true;
+
+    if ( index === wweArray.length) {
+        gradeQuiz();
+    } else {
+
+        transitionScreen()
+        setTimeout(displayQuestion, 3000)
+
+    }
+
+
+transitionScreen()
+    $(display) image of something
+                text "get ready"
+
+
+
+
+displayQuestion()
+    - display the image
+
+    - shuffle the answerArray
+        - pick 3 choices
+        - add the correct answer
+    - shuffle the new array and put in dom 
+   
+    - begin the timeout()  the checkAnswer() should be in the settimeout(),1000
+        
+
+
+gradeQuiz()
+    var correct = 0;
+    var incorrect = 0;
+
+    for (var i = 0; i < tempGame.length; i ++ ) {
+        if ( tempGame[i].name === tempGame[i].userAnswer) {
+            correct++;
+        } else {
+            incorrect++;
+        }
+
+    var grade = (incorrect/tempGame.length) * 100;
+    display grade in dom
+
+    display correct in dom
+    display incorrect in dom
+
+    }
+
+
+reset()
+
+    tempGame = [];
+    index = 0;
+    $(divs).empty()
+
+
+

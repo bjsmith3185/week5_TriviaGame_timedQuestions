@@ -209,7 +209,7 @@ $(document).ready(function(){
         } else if (correct === tempGameArray.length) {
             $(".grade").text("You got em all right!");
         } else if (incorrect >= 1) {
-            var grade = Math.round((incorrect/tempGameArray.length) * 100);
+            var grade = Math.round((correct/tempGameArray.length) * 100);
     
             $(".grade").text("You Scored " + grade +"%");
             $(".correct").text("Correct ......" + correct);

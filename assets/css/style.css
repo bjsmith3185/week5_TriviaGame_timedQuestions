@@ -1,31 +1,136 @@
 
 
-.transition {
-    background: lightblue;
-    height: 600px;
-    width: 100%;
+body {
+    background: black;
 }
 
-.correct-answer {
-    background: orange;
-    height: 500px;
-    width: 100%;
-}
 
-.welcome {
-    background: gray;
-    width: 200px;
-    height: 200px;
-}
-
-.game {
-    background: lightgreen;
-    width: 100%;
-    height: 600px;
-}
-
-.results {
+.welcome-title-area {
+    /* margin-top: 50px; */
     background: red;
-    height: 800px;
+    /* height: 80px; */
     width: 100%;
 }
+
+.welcome-title {
+    font-size: 46px;
+    color: yellow;
+    padding: 10px;
+}
+
+.welcome-image-area {
+    
+    /* width: 80%; */
+    /* height: auto; */
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+
+.welcome-image {
+    width: 80%;
+    height: auto;
+
+}
+
+
+.start {
+    border: 2px solid yellow;
+    padding: 10px;
+    font-size: 30px;
+    border-radius: 25px;
+    width: 170px;
+    color: yellow;
+    background: red;
+}
+
+/* game screen  */
+
+.game-title-area {
+    /* margin-top: 50px; */
+    background: red;
+  
+    width: 100%;
+}
+
+.game-title {
+    font-size: 30px;
+    color: yellow;
+    padding: 5px;
+}
+
+.game-image-area {
+    /* width: 80%;
+    height: auto; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.show-image {
+    width: 80%;
+    height: auto;
+}
+
+.show-choices {
+    font-size: 30px;
+    font-weight: bolder;
+    color: yellow;
+}
+
+
+/* correct screen  */
+
+
+.correct-title-area {
+    /* margin-top: 50px; */
+    background: red;
+    /* height: 80px; */
+    width: 100%;
+}
+
+.correct-title {
+    font-size: 32px;
+    color: yellow;
+    padding: 10px;
+}
+
+.correct-image-area {
+    
+    /* width: 80%; */
+    /* height: auto; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.show-image-again {
+    width: 80%;
+    height: auto;
+
+}
+
+.show-name {
+    color: yellow;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* transtion screen  */
+
+.transition-title {
+    margin-top: 30px;
+    color: yellow;
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+.transition-image {
+    margin-top: 30px;
+    width: 80%;
+    height: auto;
+
+
+}
+

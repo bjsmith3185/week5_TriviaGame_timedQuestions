@@ -101,4 +101,38 @@ reset()
     $(divs).empty()
 
 
+--------------------------------------
+
+answer choices:
+
+Booker T 
+Chris Jericho 
+Edge 
+HHH 
+IRS 
+Matt Hardy 
+Randy Orton 
+Ric Flair
+The Rock
+Sheamus 
+Steve Austin 
+
+incorrect choices: 
+
+Undertaker 
+John Cena 
+Big Show
+Daniel Bryan 
+AJ Styles 
+Kurt Angle 
+Brock Lesnar 
+Hulk Hogan 
+Kane 
+Shawn Michaels 
+Jeff Hardy 
+Dolph Ziggler 
+The Miz 
+Mick Foley
+Vince McMahon
+
 

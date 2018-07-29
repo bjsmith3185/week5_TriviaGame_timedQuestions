@@ -68,8 +68,8 @@ body {
 }
 
 .show-image {
-    width: 80%;
-    height: auto;
+    max-width: 80%;
+    max-height:480px;
 }
 
 .show-choices {
@@ -84,7 +84,7 @@ body {
 
 .correct-title-area {
     /* margin-top: 50px; */
-    background: red;
+    /* background: red; */
     /* height: 80px; */
     width: 100%;
 }
@@ -93,6 +93,7 @@ body {
     font-size: 32px;
     color: yellow;
     padding: 10px;
+    font-weight: bold;
 }
 
 .correct-image-area {
@@ -105,8 +106,8 @@ body {
 }
 
 .show-image-again {
-    width: 80%;
-    height: auto;
+    max-width: 80%;
+    max-height: 480px;
 
 }
 
@@ -128,8 +129,8 @@ body {
 
 .transition-image {
     margin-top: 30px;
-    width: 80%;
-    height: auto;
+    max-width: 80%;
+    max-height: 480px;
 
 
 }

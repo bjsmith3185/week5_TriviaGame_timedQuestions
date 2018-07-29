@@ -203,19 +203,17 @@ $(document).ready(function(){
                 incorrect++;
             };
         };
-    
+   
         if (correct === 0) {
             $(".grade").text("You scored 0%, Maybe try harder?").addClass("loser");
-    
         } else if (correct === tempGameArray.length) {
-            $(".grade").text("You got em all right bro!");
-    
-        } else {
-            var grade = (incorrect/tempGameArray.length) * 100;
+            $(".grade").text("You got em all right!");
+        } else if (incorrect >= 1) {
+            var grade = Math.round((incorrect/tempGameArray.length) * 100);
     
             $(".grade").text("You Scored " + grade +"%");
-            $(".correct").text(correct);
-            $(".incorrect").text(incorrect);
+            $(".correct").text("Correct ......" + correct);
+            $(".incorrect").text("Incorrect ......" +incorrect);
         };
     };
 
@@ -226,7 +224,10 @@ $(document).ready(function(){
         tempGameArray = [];
         selected;
         endOfGame = false;
-
+        correct = 0;
+        incorrect = 0;
+        $(".correct").empty();
+        $(".incorrect").empty();
         $(".welcome").show();
         $(".results").hide();
 

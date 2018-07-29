@@ -174,3 +174,14 @@ body {
     font-weight: bold;
    
 }
+
+.reset-button {
+    margin-top: 15px;
+    border: 2px solid yellow;
+    padding: 10px;
+    font-size: 30px;
+    border-radius: 25px;
+    width: 170px;
+    color: yellow;
+    background: red;
+}

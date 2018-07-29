@@ -1,198 +1,238 @@
 
+$(document).ready(function(){
 
-var wweArray = [
-    {
-        image: "image 0",
-        name: "name 0",
-    },
-    {
-        image: "image 1",
-        name: "name 1",
-    },
-    {
-        image: "image 2",
-        name: "name 2",
-    },
-    {
-        image: "image 3",
-        name: "name 3",
-    },
-    {
-        image: "image 4",
-        name: "name 4",
-    },
-    {
-        image: "image 5",
-        name: "name 5",
-    },
-];
-
-var namesArray = [
-    "name 0",
-    "name 1",
-    "name 2",
-    "name 3",
-    "name 4",
-    "name 5",
-    "name 6",
-    "name 7",
-    "name 8",
-    "name 9",
-];
-
-
-
-
-var timesUp = true;
-var index = 0;
-var timerRunning;
-var tempGameArray = [];
-var selected;
-
-
-$(".start").on("click", function() {
-    displayQuestion();
-});
-
-$(".name").on("click", function() {
-    selected = $(this).val();
-    clearTimeout(timerRunning);
-    checkname();
-    timesUp = false;
-});
-
-function checkname() {
-    var arrayLocation = wweArray[index];
-    var objectForArray = new Object();
-
-    objectForArray.image = arrayLocation.image;
-    objectForArray.name = arrayLocation.name;
-    tempGameArray.push(objectForArray);
-
-    if (timesUp) {
-        // if timesUp is true then the time ran out and they missed the question
-        tempGameArray[index].username = "unnameed";
-        $(".show-name").text(wweArray[index].name);
-
-    } else {
-       
-        tempGameArray[index].username = selected;
-       
-        if ( tempGameArray[index].username === tempGameArray[index].name) {
-            console.log("you are correct");
-            $(".show-name").text("correct");
+    var wweArray = [
+        {
+            image: "assets/images/chris.jpg",
+            name: "Chris Jericho",
+            choices: ["AJ Styles","Undertaker", "Daniel Bryan", "Chris Jericho"],
+            transition: "assets/images/transitions/ladder_transition.gif",
+        },
+        {
+            image: "assets/images/edge.jpg",
+            name: "Edge ",
+            choices: ["Mick Foley","Vince McMahon", "Jeff Hardy", "Edge "],
+            transition: "assets/images/transitions/chris_smile.gif",
+        },
+        {
+            image: "assets/images/booker.png",
+            name: "Booker T",
+            choices: ["Daniel Bryan","Kane", "Undertaker", "Booker T"],
+            transition: "assets/images/transitions/christian_Slap.gif",
+        },
+        {
+            image: "assets/images/hhh.png",
+            name: "HHH",
+            choices: ["Kurt Angle","Brock Lesnar", "Big Show", "HHH"],
+            transition: "assets/images/transitions/double_slam.gif",
+        },
+        {
+            image: "assets/images/irs.jpg",
+            name: "IRS",
+            choices: ["Kane","The Miz", "Shawn Michaels", "IRS"],
+            transition: "assets/images/transitions/hhh_dx.gif",
+        },
+        {
+            image: "assets/images/matt.jpg",
+            name: "Matt Hardy",
+            choices: ["Undertaker","Daniel Bryan", "Jeff Hardy", "Matt Hardy"],
+            transition: "assets/images/transitions/irs.gif",
+        },
+        {
+            image: "assets/images/randy.jpg",
+            name: "Randy Orton",
+            choices: ["Shawn Michaels","Big Show", "Dolph Ziggler", "Randy Orton"],
+            transition: "assets/images/transitions/people_eyebrow.gif",
+        },
+        {
+            image: "assets/images/ric.jpg",
+            name: "Ric Flair",
+            choices: ["Jeff Hardy","Undertaker", "John Cena", "Ric Flair"],
+            transition: "assets/images/transitions/steve_austin.gif",
+        },
+        {
+            image: "assets/images/rock.jpg",
+            name: "The Rock",
+            choices: ["Big Show","Kurt Angle", "John Cena", "The Rock"],
+            transition: "assets/images/transitions/hhh_pedigree.gif",
+        },
+        {
+            image: "assets/images/sheamus.jpg",
+            name: "Sheamus",
+            choices: ["Kane","Brock Lesnar", "Shawn Michaels", "Sheamus"],
+            transition: "assets/images/transitions/Scoop_Slam.gif",
+        },
+        {
+            image: "assets/images/steve.jpg",
+            name: "Steve Austin",
+            choices: ["Undertaker","John Cena", "AJ Styles", "Steve Austin"],
+            transition: "assets/images/transitions/rock_bring_it.gif",
+        },
+    ];
+    
+    var timesUp = true;
+    var index = 0;
+    var timerRunning;
+    var tempGameArray = [];
+    var selected;
+    var endOfGame = false;
+    
+    // end of variables
+    
+    $(".welcome").show();
+    $(".game").hide();
+    $(".transition").hide();
+    $(".correct-answer").hide();
+    $(".results").hide();
+    $("#picture").attr("src", wweArray[0].image)
+    
+    // welcome start button 
+    
+    $(".start").on("click", function() {
+        displayQuestion();
+        $(".welcome").hide();
+        $(".game").show();
+    });
+    
+    // select answer button 
+    
+    $(".show-choices").on("click", ".name", function() {
+        selected = $(this).attr("data-name");
+        timesUp = false;
+        clearTimeout(timerRunning);
+        checkname();
+    });
+    
+    function checkname() {
+        $(".game").hide();
+        $(".correct-answer").show();
+    
+        var arrayLocation = wweArray[index];
+        var objectForArray = new Object();
+    
+        objectForArray.image = arrayLocation.image;
+        objectForArray.name = arrayLocation.name;
+        tempGameArray.push(objectForArray);
+    
+        if (timesUp) {
+            // if timesUp is true then the time ran out and they missed the question
+            tempGameArray[index].username = "incorrect";
+            $(".show-name").text(wweArray[index].name);
+            $(".correct-title").text("Wrong..");
+    
         } else {
-           console.log("you are incorrect");
-           $(".show-name").text(wweArray[index].name);
-           
-        };
-    };
-
-    index++;
-    timesUp = true;
-
-    if ( index === wweArray.length) {
-        gradeQuiz();
-        // $(".results-screen").show();
-    } else {
-
-        transitionScreen()
-        setTimeout(displayQuestion, 1000)
-
-    };
-};
-
-
-function transitionScreen() {
-    $(".transition").text("Are you ready?");
-
-};
-
-function displayQuestion() {
-    var randomnamesArray = [];
-    $(".show-name").empty();
-    // $(".show-image").html("<img src='" + wweArray[index].image + "'>").addClass("");
-    $(".show-image").text(wweArray[index].image)
-    console.log("this is the name: " + wweArray[index].name);
-
-    namesWithoutCorrect();
-
-    function namesWithoutCorrect() {
-        randomnamesArray = [];
-        // var x = inputArray[i];
-        
-        do {
-            randomnamesArray[randomnamesArray.length] = namesArray.splice(Math.floor(Math.random() * namesArray.length), 1)[0];
-            } while (randomnamesArray.length < 3);
-      
-            for (var j = 0; j < randomnamesArray.length; j++) {
-            if (wweArray[index].name === randomnamesArray[j]) {   
-                console.log("in there twice");
-                randomnamesArray = [];
+            tempGameArray[index].username = selected;
+    
+            if ( tempGameArray[index].username === tempGameArray[index].name) {
+                $(".correct-title").text("Correct!!");
+                $(".show-name").text(wweArray[index].name);
+            } else {
+               $(".correct-title").text("Wrong..");
+               $(".show-name").text(wweArray[index].name);
             };
         };
-
-        // console.log("this is randomnameArray below")
-        // console.log(randomnamesArray);
-    };
-
-    if (randomnamesArray.length === 0) {
-        namesWithoutCorrect();
-        // // console.log("it is 0")
-        // randomnamesArray.push(x.correctname);
-        // randomnamesArray.sort(function (a, b) { return 0.5 - Math.random() });
-    } else {
-        randomnamesArray.push(wweArray[index].name);  //
-        randomnamesArray.sort(function (a, b) { return 0.5 - Math.random() });
-        console.log("this is randomnameArray before showing:")
-        console.log(randomnamesArray);
-    };
-
-
-    for (var i = 0; i < 4; i++) {
-        var newDiv = $("<div>");
-        newDiv.text(randomnamesArray[i]);
-        $(".show-choices").append(newDiv);
-        // $(".show-choices").append(randomnamesArray[i]);
-     };
-    $
-
-
-
-    timerRunning = setTimeout(checkname, 2 * 1000);
-
-};
-
-function gradeQuiz() {
-    var correct = 0;
-    var incorrect = 0;
-
-    for (var i = 0; i < tempGameArray.length; i ++ ) {
-        if ( tempGameArray[i].name === tempGameArray[i].username) {
-            correct++;
+    
+        if ( (index + 1) === wweArray.length) {
+            endOfGame = true;
+            $(".correct-answer").show();
+            $(".show-image-again").attr("src", wweArray[index].image);
         } else {
-            incorrect++;
+            $(".game").hide();
+            $(".correct-answer").show();
+            $(".show-image-again").attr("src", wweArray[index].image);
         };
-
-    }
-
-    if (correct === 0) {
-        // display something saying grade = 0;
-        alert('Hi')
-        $(".grade").text("your grade is 0%, maybe try harder?");
-
-    } else {
-        var grade = (incorrect/tempGameArray.length) * 100;
-
-        $(".grade").text("your grade is: " + grade);
-        $(".correct").text("You got " + correct + " correct!");
-        $(".incorrect").text("You missed " + incorrect + ".");
-        
+    
+        if (endOfGame) {
+            setTimeout(gradeQuiz, 3000);
+        } else {
+            setTimeout(transition, 3000);
         };
-       
+    
+        index++;
+        timesUp = true;
+    };
+    
+    function transition() {
+        $(".transition").show();
+        $(".correct-answer").hide();
+        $(".transition-title").text("Are you ready bro?");
+        $(".transition-image").attr("src", wweArray[index-1].transition );
+        setTimeout(displayQuestion, 2000)
+    
+    };
+    
+    function displayQuestion() {
+    
+        $(".transition").hide();
+        $(".game").show();
+    
+        var randomAnswersArray = [];
+        $(".show-name").empty();
+        $(".show-image").empty();
+        $(".show-choices").empty();
+        $(".show-image").attr("src", wweArray[index].image)
+        console.log("this is the answer: " + wweArray[index].name);
+    
+        // shuffles the answers array and displays in the dom 
+        for (var i = 0; i < 4; i++) {
+            randomAnswersArray.push(wweArray[index].choices[i]);
+        };
+    
+        randomAnswersArray.sort(function (a, b) { return 0.5 - Math.random() });
+    
+        for (var i = 0; i <randomAnswersArray.length; i++) {
+            var newDiv = $("<div>");
+            newDiv.text(randomAnswersArray[i]).addClass("name").attr("data-name", randomAnswersArray[i]);
+            $(".show-choices").append(newDiv);
+        };
+    
+        timerRunning = setTimeout(checkname, 2 * 5000);
+    };
+    
+    function gradeQuiz() {
+        $(".correct-answer").hide();
+        $(".results").show();
+    
+        var correct = 0;
+        var incorrect = 0;
+    
+        for (var i = 0; i < tempGameArray.length; i ++ ) {
+            if ( tempGameArray[i].name === tempGameArray[i].username) {
+                correct++;
+            } else {
+                incorrect++;
+            };
+        };
+    
+        if (correct === 0) {
+            $(".grade").text("You scored 0%, Maybe try harder?").addClass("loser");
+    
+        } else if (correct === tempGameArray.length) {
+            $(".grade").text("You got em all right bro!");
+    
+        } else {
+            var grade = (incorrect/tempGameArray.length) * 100;
+    
+            $(".grade").text("You Scored " + grade +"%");
+            $(".correct").text(correct);
+            $(".incorrect").text(incorrect);
+        };
+    };
+
+
+    $(".reset-button").on("click", function() {
+        timesUp = true;
+        index = 0;
+        tempGameArray = [];
+        selected;
+        endOfGame = false;
+
+        $(".welcome").show();
+        $(".results").hide();
+
+    })
 
     
-};
-
-
-//---------------------------------------------------------------------------
+    }); // end of document ready
+    
+    

@@ -27,17 +27,17 @@ var wweArray = [
     },
 ];
 
-var answersArray = [
-    "answer 0",
-    "answer 1",
-    "answer 2",
-    "answer 3",
-    "answer 4",
-    "answer 5",
-    "answer 6",
-    "answer 7",
-    "answer 8",
-    "answer 9",
+var namesArray = [
+    "name 0",
+    "name 1",
+    "name 2",
+    "name 3",
+    "name 4",
+    "name 5",
+    "name 6",
+    "name 7",
+    "name 8",
+    "name 9",
 ];
 
 
@@ -54,14 +54,14 @@ $(".start").on("click", function() {
     displayQuestion();
 });
 
-$(".answer").on("click", function() {
+$(".name").on("click", function() {
     selected = $(this).val();
     clearTimeout(timerRunning);
-    checkAnswer();
+    checkname();
     timesUp = false;
 });
 
-function checkAnswer() {
+function checkname() {
     var arrayLocation = wweArray[index];
     var objectForArray = new Object();
 
@@ -71,14 +71,14 @@ function checkAnswer() {
 
     if (timesUp) {
         // if timesUp is true then the time ran out and they missed the question
-        tempGameArray[index].userAnswer = "unanswered";
+        tempGameArray[index].username = "unnameed";
         $(".show-name").text(wweArray[index].name);
 
     } else {
        
-        tempGameArray[index].userAnswer = selected;
+        tempGameArray[index].username = selected;
        
-        if ( tempGameArray[index].userAnswer === tempGameArray[index].name) {
+        if ( tempGameArray[index].username === tempGameArray[index].name) {
             console.log("you are correct");
             $(".show-name").text("correct");
         } else {
@@ -97,7 +97,7 @@ function checkAnswer() {
     } else {
 
         transitionScreen()
-        setTimeout(displayQuestion, 3000)
+        setTimeout(displayQuestion, 1000)
 
     };
 };
@@ -109,54 +109,57 @@ function transitionScreen() {
 };
 
 function displayQuestion() {
-    var randomAnswersArray = [];
+    var randomnamesArray = [];
     $(".show-name").empty();
     // $(".show-image").html("<img src='" + wweArray[index].image + "'>").addClass("");
     $(".show-image").text(wweArray[index].image)
-    console.log("this is the answer: " + wweArray[index].name);
+    console.log("this is the name: " + wweArray[index].name);
 
-    answersWithoutCorrect(index, answersArray);
+    namesWithoutCorrect();
 
-    function answersWithoutCorrect(i, inputArray) {
-        // randomAnswersArray = [];
+    function namesWithoutCorrect() {
+        randomnamesArray = [];
         // var x = inputArray[i];
         
         do {
-            randomAnswersArray[randomAnswersArray.length] = answersArray.splice(Math.floor(Math.random() * answersArray.length), 1)[0];
-            } while (randomAnswersArray.length < 3);
+            randomnamesArray[randomnamesArray.length] = namesArray.splice(Math.floor(Math.random() * namesArray.length), 1)[0];
+            } while (randomnamesArray.length < 3);
       
-            for (var j = 0; j < randomAnswersArray.length; j++) {
-            if (wweArray[index].name === randomAnswersArray[j]) {   
+            for (var j = 0; j < randomnamesArray.length; j++) {
+            if (wweArray[index].name === randomnamesArray[j]) {   
                 console.log("in there twice");
-                randomAnswersArray = [];
+                randomnamesArray = [];
             };
         };
 
-        // console.log("this is randomAnswerArray below")
-        // console.log(randomAnswersArray);
+        // console.log("this is randomnameArray below")
+        // console.log(randomnamesArray);
     };
 
-    if (randomAnswersArray.length === 0) {
-        answersWithoutCorrect(index, answersArray);
+    if (randomnamesArray.length === 0) {
+        namesWithoutCorrect();
         // // console.log("it is 0")
-        // randomAnswersArray.push(x.correctAnswer);
-        // randomAnswersArray.sort(function (a, b) { return 0.5 - Math.random() });
+        // randomnamesArray.push(x.correctname);
+        // randomnamesArray.sort(function (a, b) { return 0.5 - Math.random() });
     } else {
-        randomAnswersArray.push(wweArray[index].name);  //
-        randomAnswersArray.sort(function (a, b) { return 0.5 - Math.random() });
-        console.log("this is randomAnswerArray before showing:")
-        console.log(randomAnswersArray);
+        randomnamesArray.push(wweArray[index].name);  //
+        randomnamesArray.sort(function (a, b) { return 0.5 - Math.random() });
+        console.log("this is randomnameArray before showing:")
+        console.log(randomnamesArray);
     };
 
 
     for (var i = 0; i < 4; i++) {
-        $(".show-choices").append(randomAnswersArray[i]);
+        var newDiv = $("<div>");
+        newDiv.text(randomnamesArray[i]);
+        $(".show-choices").append(newDiv);
+        // $(".show-choices").append(randomnamesArray[i]);
      };
     $
 
 
 
-    timerRunning = setTimeout(checkAnswer, 5 * 1000);
+    timerRunning = setTimeout(checkname, 2 * 1000);
 
 };
 
@@ -165,19 +168,30 @@ function gradeQuiz() {
     var incorrect = 0;
 
     for (var i = 0; i < tempGameArray.length; i ++ ) {
-        if ( tempGameArray[i].name === tempGameArray[i].userAnswer) {
+        if ( tempGameArray[i].name === tempGameArray[i].username) {
             correct++;
         } else {
             incorrect++;
         };
 
-    var grade = (incorrect/tempGameArray.length) * 100;
+    }
 
-    $(".grade").text("your grade is: " + grade);
-    $(".correct").text("You got " + correct + " correct!");
-    $(".incorrect").text("You missed " + incorrect + ".");
-   
-    };
+    if (correct === 0) {
+        // display something saying grade = 0;
+        alert('Hi')
+        $(".grade").text("your grade is 0%, maybe try harder?");
+
+    } else {
+        var grade = (incorrect/tempGameArray.length) * 100;
+
+        $(".grade").text("your grade is: " + grade);
+        $(".correct").text("You got " + correct + " correct!");
+        $(".incorrect").text("You missed " + incorrect + ".");
+        
+        };
+       
+
+    
 };
 
 

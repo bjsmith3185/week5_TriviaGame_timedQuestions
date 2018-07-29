@@ -1,5 +1,9 @@
+add count down timer to dom
+add status bar for length of grade 
 
 
+
+//----------------------------------------------
 create original array with name, image
 
 create a tempGame array with the name, image, userAnswer

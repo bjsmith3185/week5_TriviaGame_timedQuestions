@@ -78,6 +78,23 @@ body {
     color: yellow;
 }
 
+/* progress bar  */
+
+.progress {
+   /* margin-left: auto;
+   margin-right: auto; */
+    height: 50px;
+    position: fixed;
+    width: 70%;
+    bottom: 20px;
+    
+}
+
+.progress-bar {
+    padding: 15px;
+    font-size: 30px;
+    
+}
 
 /* correct screen  */
 
@@ -186,3 +203,31 @@ body {
     color: yellow;
     background: red;
 }
+
+
+
+
+
+
+
+
+@media screen and (max-width: 600px) {
+    
+    .progress {
+        margin-left: auto;
+        margin-right: auto;
+         height: 30px;
+         position: fixed;
+         width: 70%;
+         bottom: 20px;
+         
+     }
+     
+     .progress-bar {
+         padding: 8px;
+         font-size: 14px;
+         
+     }
+  }
+
+  

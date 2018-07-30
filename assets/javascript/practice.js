@@ -8,12 +8,12 @@ $(document).ready(function(){
             choices: ["AJ Styles","Undertaker", "Daniel Bryan", "Chris Jericho"],
             transition: "assets/images/transitions/ladder_transition.gif",
         },
-        {
-            image: "assets/images/edge.jpg",
-            name: "Edge ",
-            choices: ["Mick Foley","Vince McMahon", "Jeff Hardy", "Edge "],
-            transition: "assets/images/transitions/chris_smile.gif",
-        },
+        // {
+        //     image: "assets/images/edge.jpg",
+        //     name: "Edge ",
+        //     choices: ["Mick Foley","Vince McMahon", "Jeff Hardy", "Edge "],
+        //     transition: "assets/images/transitions/chris_smile.gif",
+        // },
         {
             image: "assets/images/booker.png",
             name: "Booker T",
@@ -102,10 +102,24 @@ $(document).ready(function(){
         clearTimeout(timerRunning);
         checkname();
     });
+
+    function progressBar() {
+  
+       var value = Math.round(((index+1)/wweArray.length)*100);
+     
+       console.log(wweArray.length);
+       console.log("this is value: " + value);
+      
+
+    
+        $(".progress-bar").attr("style", "width:"+value+"%").text(value+"%");
+    };
     
     function checkname() {
         $(".game").hide();
         $(".correct-answer").show();
+
+        progressBar();
     
         var arrayLocation = wweArray[index];
         var objectForArray = new Object();
@@ -236,4 +250,4 @@ $(document).ready(function(){
     
     }); // end of document ready
     
-    
+   

@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 
     var wweArray = [
@@ -102,10 +101,24 @@ $(document).ready(function(){
         clearTimeout(timerRunning);
         checkname();
     });
+
+    function progressBar() {
+  
+       var value = Math.round(((index+1)/wweArray.length)*100);
+     
+       console.log(wweArray.length);
+       console.log("this is value: " + value);
+      
+
+    
+        $(".progress-bar").attr("style", "width:"+value+"%").text(value+"%");
+    };
     
     function checkname() {
         $(".game").hide();
         $(".correct-answer").show();
+
+        progressBar();
     
         var arrayLocation = wweArray[index];
         var objectForArray = new Object();
@@ -236,4 +249,4 @@ $(document).ready(function(){
     
     }); // end of document ready
     
-    
+   

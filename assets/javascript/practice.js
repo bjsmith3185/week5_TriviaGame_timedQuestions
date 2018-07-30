@@ -8,12 +8,12 @@ $(document).ready(function(){
             choices: ["AJ Styles","Undertaker", "Daniel Bryan", "Chris Jericho"],
             transition: "assets/images/transitions/ladder_transition.gif",
         },
-        // {
-        //     image: "assets/images/edge.jpg",
-        //     name: "Edge ",
-        //     choices: ["Mick Foley","Vince McMahon", "Jeff Hardy", "Edge "],
-        //     transition: "assets/images/transitions/chris_smile.gif",
-        // },
+        {
+            image: "assets/images/edge.jpg",
+            name: "Edge ",
+            choices: ["Mick Foley","Vince McMahon", "Jeff Hardy", "Edge "],
+            transition: "assets/images/transitions/chris_smile.gif",
+        },
         {
             image: "assets/images/booker.png",
             name: "Booker T",
@@ -223,7 +223,7 @@ $(document).ready(function(){
         } else if (correct === tempGameArray.length) {
             $(".grade").text("You got em all right!");
         } else if (incorrect >= 1) {
-            var grade = Math.round((incorrect/tempGameArray.length) * 100);
+            var grade = Math.round((correct/tempGameArray.length) * 100);
     
             $(".grade").text("You Scored " + grade +"%");
             $(".correct").text("Correct ......" + correct);

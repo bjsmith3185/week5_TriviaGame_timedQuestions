@@ -1,5 +1,11 @@
+
+
+
+
 add count down timer to dom
-add status bar for length of grade 
+
+
+add status bar for length of game.  done 
 
 
 

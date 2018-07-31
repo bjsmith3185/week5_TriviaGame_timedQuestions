@@ -76,6 +76,8 @@ $(document).ready(function(){
     var tempGameArray = [];
     var selected;
     var endOfGame = false;
+    var stopTimer;
+    var counter = 5;
     
     // end of variables
     
@@ -119,6 +121,8 @@ $(document).ready(function(){
         $(".game").hide();
         $(".correct-answer").show();
 
+        clearInterval(stopTimer);
+        counter = 5;
         progressBar();
     
         var arrayLocation = wweArray[index];
@@ -174,11 +178,25 @@ $(document).ready(function(){
         setTimeout(displayQuestion, 2000)
     
     };
+
+    function displayTimer() {
+        $(".timer").text(counter);
+        
+        if (counter === 0) {
+            $("#timer").text("-");
+        } else {
+            counter--;
+        };
+    };
     
     function displayQuestion() {
     
         $(".transition").hide();
         $(".game").show();
+        $(".timer").text("6");
+
+        clearInterval(stopTimer);
+        counter = 5;
     
         var randomAnswersArray = [];
         $(".show-name").empty();
@@ -200,7 +218,14 @@ $(document).ready(function(){
             $(".show-choices").append(newDiv);
         };
     
-        timerRunning = setTimeout(checkname, 2 * 5000);
+        
+
+        // inserting countdown display 
+
+        stopTimer = setInterval(displayTimer, 1000);
+        timerRunning = setTimeout(checkname, 6 * 1000);
+       
+
     };
     
     function gradeQuiz() {
